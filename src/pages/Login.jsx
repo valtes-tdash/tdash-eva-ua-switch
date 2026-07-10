@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
 import usePageTitle from '../hooks/usePageTitle';
 
@@ -22,9 +22,10 @@ const Login = () => {
     }
   };
 
+  // ログイン済みで /login に来た場合は宣言的にリダイレクト（描画中の命令的 navigate は
+  // iOS Safari 等で白画面になり得るため <Navigate> を使う）
   if (isAuthenticated) {
-    navigate('/');
-    return null;
+    return <Navigate to="/" replace />;
   }
 
   return (
