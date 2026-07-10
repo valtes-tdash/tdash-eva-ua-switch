@@ -136,7 +136,9 @@ export const AppProvider = ({ children }) => {
 
   const login = async (email, password) => {
     return withLatency(() => {
-      const found = initialUsers.find((u) => u.email === email);
+      // メールは大文字小文字を無視し前後空白を除去して照合（iOS Safari の自動大文字化等に強くする）
+      const normalizedEmail = (email ?? '').trim().toLowerCase();
+      const found = initialUsers.find((u) => u.email.toLowerCase() === normalizedEmail);
       if (!found || found.password !== password) {
         throw new Error('メールアドレスまたはパスワードが一致しません');
       }

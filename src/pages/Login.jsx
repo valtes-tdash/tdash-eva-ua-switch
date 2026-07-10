@@ -77,6 +77,12 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="example@email.com"
+              // iOS Safari の自動大文字化・自動修正・オートフィルを抑止（メール欄が
+              // 勝手に大文字化/クリアされて自動入力が通らない問題を防ぐ）
+              autoCapitalize="none"
+              autoCorrect="off"
+              autoComplete="off"
+              spellCheck={false}
               required
             />
           </div>
