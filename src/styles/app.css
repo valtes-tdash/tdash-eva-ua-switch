@@ -475,3 +475,75 @@ input[type='date']:focus {
 [data-os='other'] .os-banner-badge {
   background: #d97706;
 }
+
+/* ログイン画面の背景も OS 別に色分け（他画面と同様に OS が視覚的に分かるように）。
+ * Login.jsx 側で className="login-bg" を付与し、インライン背景を廃止している。 */
+.login-bg {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* 既定（その他） */
+}
+[data-os='android'] .login-bg {
+  background: linear-gradient(135deg, #3ddc84 0%, #0f9d58 100%);
+}
+[data-os='ios'] .login-bg {
+  background: linear-gradient(135deg, #48484a 0%, #1c1c1e 100%);
+}
+
+/* =====================================================================
+ * ハンバーガーメニュー（モバイル幅でナビを畳む。responsive 版と同一）
+ * ===================================================================== */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 40px;
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+@media (max-width: 640px) {
+  .header {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-link {
+    text-align: center;
+  }
+}
